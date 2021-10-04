@@ -25,12 +25,12 @@ public class ParticleGroup {
 		
 		particles = new ArrayList<>();
 		
-		for (int i = 0; i < num; i++) {
+		for (int i = 0; i < number; i++) {
 			//calculate direction in radians
 			float dir = (float) Math.random()*360;
 			int speed = (int) (Math.random()*7)+1;
 			//add particles
-			Particle particleX = new Particle(speed, dir, type, posX, posY, app, mx, my);
+			Particle particleX = new Particle(speed, dir, type, posX, posY, app, mx, my, name);
 			particles.add(particleX);
 		}
 	}
@@ -40,4 +40,14 @@ public class ParticleGroup {
 			particles.get(i).drawParticle();
 		}
 	}
+
+	//Getters and Setters
+	public ArrayList<Particle> getParticles() {
+		return particles;
+	}
+
+	public void setParticles(ArrayList<Particle> particles) {
+		this.particles = particles;
+	}
+	
 }
