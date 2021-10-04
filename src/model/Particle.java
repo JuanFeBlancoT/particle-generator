@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 public class Particle {
 
-	public final int SIZE = 4;
+	public final int SIZE = 5;
 	private int particleSpeed;
 	private float particleDirection;
 	private float backupAngle;
@@ -35,7 +35,7 @@ public class Particle {
 		mx = maxW;
 		my = maxH;
 
-		System.out.println("***"+realPosX+","+realPosY);
+		//System.out.println("***"+realPosX+","+realPosY);
 		calculateAngles();
 		
 	}
@@ -44,7 +44,7 @@ public class Particle {
 		app.pushMatrix();
 		app.translate(posXOrigin, posYOrigin);
 		app.rotate(app.radians(particleDirection));
-		app.square(posX, posY, SIZE);
+		app.circle(posX, posY, SIZE);
 		app.popMatrix();
 		
 		moveParticle();
@@ -53,7 +53,7 @@ public class Particle {
 	public void moveParticle() {
 		
 		if(realPosX > 800 || realPosY > 600 || realPosX < 0 || realPosY < 0 ) {
-			System.out.println(realPosX+","+ realPosY+":    "+posX);
+			bounceParticle();
 		}
 		posX+= particleSpeed;
 		
@@ -73,6 +73,54 @@ public class Particle {
 		}
 	}
 	
+	private void bounceParticle() {
+		
+		int option = 0;
+		if((realPosX > mx && particleDirection > 0 && particleDirection < 90) ||
+				(realPosY > my && particleDirection > 90 && particleDirection < 180) ||
+				(realPosX < 0 && particleDirection > 180 && particleDirection < 270)||
+				(realPosY < 0 && particleDirection > 270 && particleDirection < 360)) {
+			//derecha
+			float n = 180-(2*(particleDirection%90));
+			float pd = (n+particleDirection)%360;
+			particleDirection = pd;
+			
+		}else if((realPosY > my && particleDirection > 0 && particleDirection < 90) ||
+				(realPosX < 0 && particleDirection > 90 && particleDirection < 180) ||
+				(realPosY < 0 && particleDirection > 180 && particleDirection < 270)||
+				(realPosX> mx && particleDirection > 270 && particleDirection < 360)) {
+			//izq
+			// 80 particleDirection = 280;
+			// 170 particleDirection = 10;
+			// 260 particleDirection = 100;
+			//particleDirection = 190;
+			int a = (int) (particleDirection/90);
+			particleDirection = ((360-(particleDirection%90))+(90*a))%360;
+		}
+		
+		
+		
+		if(realPosX > mx){
+			realPosX = mx-particleSpeed;
+		}
+		if(realPosY > my) {
+			realPosY = my-particleSpeed;
+		}
+		if(realPosX < 0){
+			realPosX = particleSpeed;
+		}
+		if(realPosY < 0) {
+			realPosY = particleSpeed;
+		}
+		posXOrigin = (int) realPosX;
+		posYOrigin = (int) realPosY;
+		
+		posX = 0;
+		posY = 0;
+		
+		
+	}
+
 	public void calculateAngles() {
 		
 		if( particleDirection > 0 && particleDirection < 90) {
@@ -91,17 +139,13 @@ public class Particle {
 		double inRadians = Math.toRadians(inDegrees);
 		double tan = Math.tan(inRadians);
 		
-		System.out.println("base: "+base);
+		//System.out.println("base: "+base);
 		
 		double y = tan*base;
-		System.out.println(y);
+		//System.out.println(y);
 		
 		double d = Math.sqrt((Math.pow(base, 2))+(Math.pow(y, 2)));
-		System.out.println("d: "+d);
-		
-		/*changeY = y/d;
-		changeX = base/d;
-		 */
+		//System.out.println("d: "+d);
 		
 		if( (particleDirection > 0 && particleDirection < 90) || ( particleDirection > 180 && particleDirection < 270)) {
 			changeY = y/d;
@@ -110,9 +154,5 @@ public class Particle {
 			changeX = y/d;
 			changeY = base/d;
 		}
-		
-		
-		System.out.println("changeY: "+changeY);
-		System.out.println("changeX: "+changeX);
 	}
 }
