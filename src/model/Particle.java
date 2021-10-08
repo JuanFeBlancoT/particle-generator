@@ -21,9 +21,8 @@ public class Particle {
 	private int base;
 	private int mx, my;
 	
-	private PApplet app;
 	
-	public Particle(int s, float dir, int t, int px, int py, PApplet app, int maxW, int maxH, String name) {
+	public Particle(int s, float dir, int t, int px, int py, int maxW, int maxH, String name) {
 		canMove = true;
 		particleDirection = dir;
 		particleSpeed = s;
@@ -33,7 +32,7 @@ public class Particle {
 		
 		realPosX = px;
 		realPosY = py;
-		this.app = app;
+
 		mx = maxW;
 		my = maxH;
 		this.name = name;
@@ -61,17 +60,6 @@ public class Particle {
 			b = 40;
 			break;
 		}				
-	}
-
-	public void drawParticle() {
-		app.fill(r,g,b);
-		app.pushMatrix();
-		app.translate(posXOrigin, posYOrigin);
-		app.rotate(app.radians(particleDirection));
-		app.circle(posX, posY, SIZE);
-		app.popMatrix();
-		
-		moveParticle();
 	}
 	
 	public void moveParticle() {
@@ -106,11 +94,7 @@ public class Particle {
 				realPosY-= particleSpeed;
 			}
 			
-		}else {
-			//Show the group to which the particle belongs while static
-			app.textSize(12);
-			app.text(name, (int)realPosX-2*name.length(), (int)realPosY+30);
-		}		
+		}
 	}
 	
 	private void bounceParticle() {
@@ -212,6 +196,91 @@ public class Particle {
 	public void setCanMove(boolean canMove) {
 		this.canMove = canMove;
 	}
+
+	public float getParticleDirection() {
+		return particleDirection;
+	}
+
+	public void setParticleDirection(float particleDirection) {
+		this.particleDirection = particleDirection;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPosX() {
+		return posX;
+	}
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
+	public int getPosXOrigin() {
+		return posXOrigin;
+	}
+
+	public void setPosXOrigin(int posXOrigin) {
+		this.posXOrigin = posXOrigin;
+	}
+
+	public int getPosYOrigin() {
+		return posYOrigin;
+	}
+
+	public void setPosYOrigin(int posYOrigin) {
+		this.posYOrigin = posYOrigin;
+	}
+
+	public boolean isCanMove() {
+		return canMove;
+	}
+
+	public void setRealPosX(double realPosX) {
+		this.realPosX = realPosX;
+	}
+
+	public void setRealPosY(double realPosY) {
+		this.realPosY = realPosY;
+	}
+
+	public int getR() {
+		return r;
+	}
+
+	public void setR(int r) {
+		this.r = r;
+	}
+
+	public int getG() {
+		return g;
+	}
+
+	public void setG(int g) {
+		this.g = g;
+	}
+
+	public int getB() {
+		return b;
+	}
+
+	public void setB(int b) {
+		this.b = b;
+	}
+	
 	
 	
 }

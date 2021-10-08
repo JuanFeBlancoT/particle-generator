@@ -14,7 +14,7 @@ public class ParticleGroup {
 	private int mx, my;
 	private ArrayList<Particle> particles;
 	
-	public ParticleGroup(String n, int num, int posX, int posY, int t, PApplet app,int mx, int my) {
+	public ParticleGroup(String n, int num, int posX, int posY, int t,int mx, int my) {
 		name = n;
 		number = num;
 		originalPosX = posX;
@@ -30,14 +30,8 @@ public class ParticleGroup {
 			float dir = (float) Math.random()*359;
 			int speed = (int) (Math.random()*7)+1;
 			//add particles
-			Particle particleX = new Particle(speed, dir, type, posX, posY, app, mx, my, name);
+			Particle particleX = new Particle(speed, dir, type, posX, posY, mx, my, name);
 			particles.add(particleX);
-		}
-	}
-	
-	public void drawParticleGroup() {
-		for (int i = 0; i < particles.size(); i++) {
-			particles.get(i).drawParticle();
 		}
 	}
 

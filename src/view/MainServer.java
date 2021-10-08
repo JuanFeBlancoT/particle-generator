@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import model.ParticleGroup;
 import processing.core.PApplet;
@@ -30,14 +31,31 @@ public class MainServer extends PApplet{
 		pgs = new ArrayList<>();
 		coms = new Communication(this);
 		coms.start();
+		/*ParticleGroup pgx = new ParticleGroup("AAA", 1, 200, 300, 2, WIDTH, HEIGHT);
+		pgs.add(pgx);*/
 	}
 
 	public void draw() {
 		background(40);
-		
+				
 		for (int i = 0; i < pgs.size(); i++) {
-			pgs.get(i).drawParticleGroup();
+			for (int j = 0; j < pgs.get(i).getParticles().size(); j++) {
+				
+				fill(pgs.get(i).getParticles().get(j).getR(), pgs.get(i).getParticles().get(j).getG(), pgs.get(i).getParticles().get(j).getB());
+				pushMatrix();
+				translate(pgs.get(i).getParticles().get(j).getPosXOrigin(), pgs.get(i).getParticles().get(j).getPosYOrigin());
+				rotate(radians(pgs.get(i).getParticles().get(j).getParticleDirection()));
+				circle(pgs.get(i).getParticles().get(j).getPosX(), pgs.get(i).getParticles().get(j).getPosY(), pgs.get(i).getParticles().get(j).SIZE);
+				popMatrix();
+				pgs.get(i).getParticles().get(j).moveParticle();
+				
+				if(!pgs.get(i).getParticles().get(j).isCanMove()) {
+					textSize(12);
+					text(pgs.get(i).getParticles().get(j).getName(), (int) pgs.get(i).getParticles().get(j).getRealPosX()-2*pgs.get(i).getParticles().get(j).getName().length(), (int)pgs.get(i).getParticles().get(j).getRealPosY()+30);
+				}
+			}
 		}
+		
 		mouseHover();
 	
 	}

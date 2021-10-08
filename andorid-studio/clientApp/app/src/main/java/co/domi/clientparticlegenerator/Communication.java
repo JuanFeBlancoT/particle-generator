@@ -39,7 +39,7 @@ public class Communication extends Thread{
     public void sendMessage(String message){
         new Thread(()->{
             try {
-                brw.write(message);
+                brw.write(message+"\n");
                 brw.flush();
             }catch(IOException e){
 
