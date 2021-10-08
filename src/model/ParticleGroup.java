@@ -27,7 +27,7 @@ public class ParticleGroup {
 		
 		for (int i = 0; i < number; i++) {
 			//calculate direction in radians
-			float dir = (float) Math.random()*360;
+			float dir = (float) Math.random()*359;
 			int speed = (int) (Math.random()*7)+1;
 			//add particles
 			Particle particleX = new Particle(speed, dir, type, posX, posY, app, mx, my, name);
@@ -49,5 +49,14 @@ public class ParticleGroup {
 	public void setParticles(ArrayList<Particle> particles) {
 		this.particles = particles;
 	}
+
+	public void setMx(int mx) {
+		this.mx = mx;
+	}
+
+	public void setMy(int my) {
+		this.my = my;
+	}
+	
 	
 }

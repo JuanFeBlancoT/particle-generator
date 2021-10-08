@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.ParticleGroup;
 import processing.core.PApplet;
+import com.google.gson.Gson;
 
 public class MainServer extends PApplet{
 
@@ -14,7 +15,11 @@ public class MainServer extends PApplet{
 	//attributes
 	public final int WIDTH = 800;
 	public final int HEIGHT = 600;
-	ArrayList<ParticleGroup> pgs = new ArrayList<>();
+	
+	//relations
+	ArrayList<ParticleGroup> pgs; 
+	Communication coms;
+	Gson json;
 	
 	public void settings() {
 		size(WIDTH,HEIGHT);
@@ -22,12 +27,11 @@ public class MainServer extends PApplet{
 	
 	public void setup() {
 		rectMode(CENTER);
-		ParticleGroup pg1 = new ParticleGroup("group1", 10, 400, 300, 1, this, WIDTH, HEIGHT);
-		ParticleGroup pg2 = new ParticleGroup("group2", 7, 200, 500, 2, this, WIDTH, HEIGHT);
-		ParticleGroup pg3 = new ParticleGroup("group3", 3, 100, 200, 3, this, WIDTH, HEIGHT);
-		pgs.add(pg1);
-		pgs.add(pg2);
-		pgs.add(pg3);
+		pgs = new ArrayList<>();
+		json = new Gson();
+		coms = new Communication(this);
+		coms.start();
+		
 	}
 
 	public void draw() {
@@ -36,6 +40,7 @@ public class MainServer extends PApplet{
 			pgs.get(i).drawParticleGroup();
 		}
 		mouseHover();
+		deleteAll();
 	}
 	
 	private void mouseHover() {
@@ -52,17 +57,20 @@ public class MainServer extends PApplet{
 				}
 			}
 		}
-		/*for (int i = 0; i < pg.getParticles().size(); i++) {
-			if(mouseX > pg.getParticles().get(i).getRealPosX()-pg.getParticles().get(i).SIZE
-					&& mouseX < pg.getParticles().get(i).getRealPosX()+pg.getParticles().get(i).SIZE 
-					&& mouseY > pg.getParticles().get(i).getRealPosY()-pg.getParticles().get(i).SIZE
-					&& mouseY < pg.getParticles().get(i).getRealPosY()+pg.getParticles().get(i).SIZE ) {
-				pg.getParticles().get(i).setCanMove(false);
-				
-			}else {
-				pg.getParticles().get(i).setCanMove(true);
-			}
-		}*/
+	}
+	
+	public void deleteAll() {
+			pgs.clear();		
+	}
+	
+	/*public void createParticleGroup(String name, int num, int posXo, int posYo, int type) {
+		ParticleGroup pgx = new ParticleGroup(name, num, posXo, posYo, type, this, WIDTH, HEIGHT);
+		pgs.add(pgx);
+	}*/
+
+	public void notifyMessage(String message) {
+		ParticleGroup pgx = json.fromJson(message, ParticleGroup.class);
+		pgs.add(pgx);
 	}
 
 }
