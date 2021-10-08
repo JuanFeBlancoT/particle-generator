@@ -51,7 +51,6 @@ public class Communication extends Thread{
 			
 			try {
 				String message = bfr.readLine();
-				System.out.println(message);
 				mainServer.notifyMessage(message);
 				
 			} catch (IOException e) {

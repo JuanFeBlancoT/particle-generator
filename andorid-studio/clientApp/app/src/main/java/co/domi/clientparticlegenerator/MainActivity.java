@@ -15,7 +15,7 @@ import co.domi.clientparticlegenerator.model.ParticleGroup;
 public class MainActivity extends AppCompatActivity {
 
     private String message;
-    private int typeP;
+    private int type;
     private String name;
     private int number;
     private int originalPosX;
@@ -55,19 +55,19 @@ public class MainActivity extends AppCompatActivity {
         redB.setOnClickListener(
                 (view) -> {
                     redB.setBackground(getResources().getDrawable(R.drawable.buttonstroke));
-                    typeP = 1;
+                    type = 3;
                 });
 
         greenB.setOnClickListener(
                 (view) -> {
                     greenB.setBackground(getResources().getDrawable(R.drawable.buttonstroke));
-                    typeP = 2;
+                    type = 2;
                 });
 
         blueB.setOnClickListener(
                 (view) -> {
                     blueB.setBackground(getResources().getDrawable(R.drawable.buttonstroke));
-                    typeP = 3;
+                    type = 1;
                 });
 
         createB.setOnClickListener(
@@ -100,11 +100,17 @@ public class MainActivity extends AppCompatActivity {
                     mx = 800;
                     my = 600;
 
-                    ParticleGroup obj = new ParticleGroup(name, number, originalPosX, originalPosY,  typeP,  mx,  my);
+                    ParticleGroup obj = new ParticleGroup(name, number, originalPosX, originalPosY,  type,  mx,  my);
+
                     String json = gson.toJson(obj);
                     coms.sendMessage(json);
                 });
 
+        erraseB.setOnClickListener(
+                (view) -> {
+                   String msg = "DESTROY";
+                    coms.sendMessage(msg);
+                });
     }
 
 }

@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import processing.core.PApplet;
-
 public class ParticleGroup {
 	
 	private String name;
@@ -12,7 +10,7 @@ public class ParticleGroup {
 	private int originalPosY;
 	private int type;
 	private int mx, my;
-	private ArrayList<Particle> particles;
+	private ArrayList<Particle> particles = new ArrayList<>();
 	
 	public ParticleGroup(String n, int num, int posX, int posY, int t,int mx, int my) {
 		name = n;
@@ -23,14 +21,12 @@ public class ParticleGroup {
 		this.mx = mx;
 		this.my = my;
 		
-		particles = new ArrayList<>();
-		
 		for (int i = 0; i < number; i++) {
 			//calculate direction in radians
 			float dir = (float) Math.random()*359;
 			int speed = (int) (Math.random()*7)+1;
 			//add particles
-			Particle particleX = new Particle(speed, dir, type, posX, posY, mx, my, name);
+			Particle particleX = new Particle(speed, dir, type, originalPosX, originalPosY, mx, my, name);
 			particles.add(particleX);
 		}
 	}

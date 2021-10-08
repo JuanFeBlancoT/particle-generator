@@ -1,5 +1,7 @@
 package co.domi.clientparticlegenerator.model;
 
+import java.util.ArrayList;
+
 public class ParticleGroup {
     private String name;
     private int number;
@@ -8,18 +10,28 @@ public class ParticleGroup {
     private int type;
     private int mx;
     private int my;
+    private ArrayList<Particle> particles = new ArrayList<>();
 
     public ParticleGroup() {
     }
 
-    public ParticleGroup(String name, int number, int originalPosX, int originalPosY, int type, int mx, int my) {
+    public ParticleGroup(String name, int num, int posX, int posY, int t, int mx, int my) {
         this.name = name;
-        this.number = number;
-        this.originalPosX = originalPosX;
-        this.originalPosY = originalPosY;
-        this.type = type;
+        this.number = num;
+        this.originalPosX = posX;
+        this.originalPosY = posY;
+        this.type = t;
         this.mx = mx;
         this.my = my;
+
+        for (int i = 0; i < number; i++) {
+            //calculate direction in radians
+            float dir = (float) Math.random()*359;
+            int speed = (int) (Math.random()*7)+1;
+            //add particles
+            Particle particleX = new Particle(speed, dir, type, originalPosX, originalPosY, mx, my, name);
+            particles.add(particleX);
+        }
     }
 
     public String getName() {
