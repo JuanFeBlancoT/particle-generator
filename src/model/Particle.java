@@ -189,7 +189,7 @@ public class Particle {
 		//find the hypotenuse which will be equivalent to the entire trajectory of the particle before it "leaves the canvas"
 		double d = Math.sqrt((Math.pow(base, 2))+(Math.pow(y, 2)));
 		
-		//Compute the exchange rate of both axis to find out for each pixel moved on the hypotenuse, how man pixels does the particle really moves on the x and y real axis
+		//Compute the exchange rate of both axis to find out for each pixel moved on the hypotenuse
 		if( (particleDirection > 0 && particleDirection < 90) || ( particleDirection > 180 && particleDirection < 270)) {
 			changeY = y/d;
 			changeX = base/d;

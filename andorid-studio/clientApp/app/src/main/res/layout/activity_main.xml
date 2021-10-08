@@ -20,6 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
             android:text="Generador"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/nameId"
             android:layout_width="337dp"
             android:layout_height="42dp"
             android:layout_marginTop="12dp"
@@ -58,10 +60,10 @@
             android:text="Cantidad de partículas"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/nameId" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/AmountId"
             android:layout_width="360dp"
             android:layout_height="48dp"
             android:layout_marginTop="9dp"
@@ -83,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/AmountId" />
 
         <TextView
             android:id="@+id/textView6"
@@ -106,40 +108,42 @@
             android:text="Y"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/AmountId" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/posXId"
             android:layout_width="125dp"
             android:layout_height="39dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="241dp"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/posYId"
             android:layout_width="125dp"
             android:layout_height="39dp"
             android:layout_marginStart="55dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="61dp"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
+            app:layout_constraintStart_toEndOf="@+id/posXId"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/RId"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="42dp"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="#FA0202"
+            app:layout_constraintEnd_toStartOf="@+id/gId"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -152,45 +156,54 @@
             android:text="Tipo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            app:layout_constraintTop_toBottomOf="@+id/posXId" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/gId"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="68dp"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="#13C67E"
+            app:layout_constraintEnd_toStartOf="@+id/bId"
+            app:layout_constraintStart_toEndOf="@+id/RId"
+            app:layout_constraintTop_toBottomOf="@+id/posYId" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/bId"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="42dp"
             android:layout_marginTop="68dp"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="#2C62EA"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+            app:layout_constraintStart_toEndOf="@+id/gId"
+            app:layout_constraintTop_toBottomOf="@+id/posYId" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/erraseId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="61dp"
+            android:backgroundTint="@color/purple_500"
             android:text="Borrar"
-            app:layout_constraintEnd_toStartOf="@+id/button5"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/createId"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintTop_toBottomOf="@+id/RId" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/createId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
+            android:backgroundTint="@color/purple_500"
             android:text="Crear"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button4"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
+            app:layout_constraintStart_toEndOf="@+id/erraseId"
+            app:layout_constraintTop_toBottomOf="@+id/bId" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

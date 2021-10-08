@@ -30,6 +30,7 @@ public class Communication extends Thread{
 			try {
 				ServerSocket ss = new ServerSocket(8000);
 				Socket conectionSocket = ss.accept();
+				System.out.println("WOWOWOW");
 				
 				InputStream inputS = conectionSocket.getInputStream();
 				InputStreamReader inputSR = new InputStreamReader(inputS);
@@ -50,7 +51,8 @@ public class Communication extends Thread{
 			
 			try {
 				String message = bfr.readLine();
-				mainServer.notifyMessage(message);
+				System.out.println(message);
+				//mainServer.notifyMessage(message);
 				
 			} catch (IOException e) {
 				e.printStackTrace();

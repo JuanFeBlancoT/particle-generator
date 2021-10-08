@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Usuario/eclipse-workspace/Particle_Generator/andorid-studio/clientApp/app/src/main/res/drawable/buttonstroke.xml" value="0.2703125" />
+        <entry key="..\:/Users/Usuario/eclipse-workspace/Particle_Generator/andorid-studio/clientApp/app/src/main/res/drawable/roundbutton.xml" value="0.2703125" />
         <entry key="..\:/Users/Usuario/eclipse-workspace/Particle_Generator/andorid-studio/clientApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
       </map>
     </option>

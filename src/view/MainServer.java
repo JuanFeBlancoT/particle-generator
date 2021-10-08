@@ -19,7 +19,7 @@ public class MainServer extends PApplet{
 	//relations
 	ArrayList<ParticleGroup> pgs; 
 	Communication coms;
-	Gson json;
+	Gson json;	
 	
 	public void settings() {
 		size(WIDTH,HEIGHT);
@@ -28,19 +28,18 @@ public class MainServer extends PApplet{
 	public void setup() {
 		rectMode(CENTER);
 		pgs = new ArrayList<>();
-		json = new Gson();
 		coms = new Communication(this);
 		coms.start();
-		
 	}
 
 	public void draw() {
 		background(40);
+		
 		for (int i = 0; i < pgs.size(); i++) {
 			pgs.get(i).drawParticleGroup();
 		}
 		mouseHover();
-		deleteAll();
+	
 	}
 	
 	private void mouseHover() {
@@ -62,15 +61,10 @@ public class MainServer extends PApplet{
 	public void deleteAll() {
 			pgs.clear();		
 	}
-	
-	/*public void createParticleGroup(String name, int num, int posXo, int posYo, int type) {
-		ParticleGroup pgx = new ParticleGroup(name, num, posXo, posYo, type, this, WIDTH, HEIGHT);
-		pgs.add(pgx);
-	}*/
 
 	public void notifyMessage(String message) {
+		Gson json = new Gson();
 		ParticleGroup pgx = json.fromJson(message, ParticleGroup.class);
-		pgs.add(pgx);
 	}
 
 }

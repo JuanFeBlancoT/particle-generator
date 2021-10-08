@@ -49,14 +49,5 @@ public class ParticleGroup {
 	public void setParticles(ArrayList<Particle> particles) {
 		this.particles = particles;
 	}
-
-	public void setMx(int mx) {
-		this.mx = mx;
-	}
-
-	public void setMy(int my) {
-		this.my = my;
-	}
-	
 	
 }
